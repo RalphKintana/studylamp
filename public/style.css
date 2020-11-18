@@ -5,6 +5,7 @@ body{
     color: #858585; 
     text-decoration: underline;
     border: 1px black;
+    font-size: 14px;
 }
 .burger_menu{
     width:15pc; 
@@ -21,12 +22,14 @@ body{
 .welcomeHeader{
     color: #8C8C8C;
     font-size: 3.5pc;
+    text-shadow: 1px 1px 1px #5e5959;
 }
 .plus{
     text-align: center;
     color: #BFBFBF;
     font-weight: 900;
     margin-bottom: 0%;
+    text-shadow: 1px 1px 1px #807e7e;
 }
 .getstarted{
     color: #858585;
