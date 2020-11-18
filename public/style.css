@@ -1,0 +1,51 @@
+body{
+    background-color: #F5F5F5;
+}
+.menu_list{
+    color: #858585; 
+    text-decoration: underline;
+    border: 1px black;
+}
+.burger_menu{
+    width:15pc; 
+    border: 1px solid #ADADAD;
+}
+.profile_image{
+    width: 3.5pc;
+     height: 3.5pc;
+}
+.header_container{
+    position: absolute;
+    z-index: 1;
+}
+.welcomeHeader{
+    color: #8C8C8C;
+    font-size: 3.5pc;
+}
+.plus{
+    text-align: center;
+    color: #BFBFBF;
+    font-weight: 900;
+    margin-bottom: 0%;
+}
+.getstarted{
+    color: #858585;
+    margin-left: 1pc;
+    text-decoration: underline;
+}
+.getstarted:hover{
+    color: #999999;
+}
+.modal_size{
+    width: 22pc;
+     height: 30pc;
+}
+.modal_body_align{
+    margin-left: 3pc;
+}
+.createbtn{
+    margin-bottom: 3pc;
+    width: 15pc;
+    font-size: 17px;
+    font-weight:600;
+}
