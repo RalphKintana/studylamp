@@ -1,81 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
 
-    
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
 
-    <title>Welcome</title>
-  </head>
-  <body>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+    
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+
     <div class="pos-f-t">
-        <nav class="navbar navbar-dark bg-dark">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <span class="navbar-text">
-            <h6 style="color: white;">StudyLamp</h6>
-          </span>
-        </nav>
-      </div>
-      <div class="collapse burger_menu" id="navbarToggleExternalContent">
-        <div class="bg-white p-4" style="height: 24pc; text-align: center;">
-          <br><img src="/imgs/profile.png" class="profile_image"> <br>
-          <a class="menu_list" href="http://">John Doe</a><br>
-          <hr>
-          <a class="menu_list" href="http://">Group Requests</a><br>
-          <a class="menu_list" href="http://">Setting</a><br><br>
-          <br><br><br><a class="menu_list" href="http://" >Log out</a>
+      <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <span class="navbar-text">
+          <h6 style="color: white;">StudyLamp</h6>
+        </span>
+      </nav>
+    </div>
+    <div class="collapse burger_menu" id="navbarToggleExternalContent">
+      <div class="bg-white p-4" style="height: 24pc; text-align: center;">
+        <br><img src="imgs/profile.png" class="profile_image"> <br>
+        <a class="menu_list" href="http://" id="username">John Doe</a><br>
+        <hr>
+        <a class="menu_list" href="http://">Group Requests</a><br>
+        <a class="menu_list" href="http://">Setting</a><br><br>
+        <br><br><br><a class="menu_list" href="http://" >Log out</a>
 
-        </div>
       </div>
-      <div class="header_container">
-        <h1 class="welcomeHeader">Welcome!</h1>
-         <h1 class="plus">+</h1>
-         <a class="getstarted" href="http://" data-toggle="modal" data-target="#exampleModal">get started by creating a group</a>
-        </div>
-        <!-- Button trigger modal -->
+    </div>
+    <div class="header_container">
+      <h1 class="welcomeHeader">Welcome!</h1>
+       <h1 class="plus">+</h1>
+       <a class="getstarted" href="http://" data-toggle="modal" data-target="#exampleModal">get started by creating a group</a>
+      </div>
+      <!-- Button trigger modal -->
 
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="top: 15%;">
-  <div class="modal-dialog modal_size" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color: #5e5959;;">Create Group</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body modal_body_align">
-        <h6>Name:</h6>
-        <input type="text" name="group_name" id="group_name"> <br>
-        <a href="" class="menu_list" style="font-size: 12px;">+ Add Members</a>
-        <br><br>
-      </div>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary createbtn" >Create</button>
-      </div>
+<div class="modal-dialog modal_size" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel" style="color: #5e5959;;">Create Group</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body modal_body_align">
+      <h6>Name:</h6>
+      <input type="text" name="group_name" id="group_name"> <br>
+      <a href="" class="menu_list" style="font-size: 12px;">+ Add Members</a>
+      <br><br>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary createbtn" >Create</button>
     </div>
   </div>
 </div>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-
-  <script>
-     var width = $(window).width() / 2.54;
-     var height = $(window).height() / 3.4;
-    $(".header_container").css({"top": height, "left": width })
-  </script>
+</div>
+  <script src="./app.js"></script>
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+</body>
 </html>
