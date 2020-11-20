@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome!</title>
+    <title>Welcome</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -33,7 +33,7 @@
     <div class="collapse burger_menu" id="navbarToggleExternalContent">
       <div class="bg-white p-4" style="height: 24pc; text-align: center;">
         <br><img src="imgs/profile.png" class="profile_image"> <br>
-        <a class="menu_list" href="http://" id="username">John Doe</a><br>
+        <a class="menu_list" href="http://" id="username"></a><br>
         <hr>
         <a class="menu_list" href="http://">Group Requests</a><br>
         <a class="menu_list" href="http://">Setting</a><br><br>
@@ -53,20 +53,25 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="top: 15%;">
 <div class="modal-dialog modal_size" role="document">
   <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header" id="modal-header">
       <h5 class="modal-title" id="exampleModalLabel" style="color: #5e5959;;">Create Group</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+    <a href="#" id="emailnotregistered">Email is not registered!</a>
     <div class="modal-body modal_body_align">
       <h6>Name:</h6>
       <input type="text" name="group_name" id="group_name"> <br>
-      <a href="" class="menu_list" style="font-size: 12px;">+ Add Members</a>
-      <br><br>
+      <a href="#" class="menu_list" style="font-size: 12px;" id="addmember">+ Add Members</a>
+      <input type="email" name="member_email" id="member_email" class="addmember" >
+      <a href="#" style="font-size: 12px;" class="addmember" id="add">+</a>
+      <div id="addmemberList">
+      </div>
+      <br>
     </div>
     <div class="text-center">
-      <button type="button" class="btn btn-primary createbtn" >Create</button>
+      <button type="button" class="btn btn-primary createbtn"  id="create_Group">Create</button>
     </div>
   </div>
 </div>

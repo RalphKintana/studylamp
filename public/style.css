@@ -52,3 +52,17 @@ body{
     font-size: 17px;
     font-weight:600;
 }
+.addmember{
+    visibility: hidden;
+}
+.member{
+    font-size: 10px;
+}
+#emailnotregistered{
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 10px;
+    color:#999999 ;
+    visibility: hidden;
+}
