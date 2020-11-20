@@ -3,6 +3,7 @@ var width = $(window).width() / 2.54;
 var height = $(window).height() / 3.4;
 $(".header_container").css({"top": height, "left": width })
 
+/* STILL NOT USED */
 var userCollection = ["user","group"];       
         
     /* Cloud Firestore*/    
@@ -14,7 +15,7 @@ var userCollection = ["user","group"];
     
             var db = firebase.firestore();
             
-            /* ADD USER
+            /* ADD USER TO THE DATABASE 
             db.collection("user").add({
                 username: "NattoObasan",
                 email: "sagnoynatalie@gmail.com",
@@ -44,126 +45,129 @@ var userCollection = ["user","group"];
 
 /* Unhide add member textbox */
  var addmember =  document.getElementById("addmember");
-
  addmember.addEventListener("click", function(){
     document.getElementById("member_email").style.visibility = "visible";
     document.getElementById("add").style.visibility = "visible";
   })
 
-/* Add members */
+
+/* Add members email to array*/
   var emails = [];
   var add = document.getElementById("add");
   add.addEventListener("click", function(){
 
+    /* Check if email is registered and if yes push email to emails array*/
     var email = document.getElementById("member_email").value;
-    var memDoc = "";
+    var status = "0";
     var userRef = db.collection("user");
     var query = userRef.where("email", "==",email);
     db.collection("user").where("email", "==",email)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            
-           if(doc.exists){
 
-            emails.push(email);
+            if(doc.exists){
+                status = "1";
+                emails.push(email);
 
-            var node = document.createElement("A");
-            node.className = "member";
-            node.style.color = "blue";
-            node.style.textDecoration = "underline";
-            var textnode = document.createTextNode(email + ",");
-            node.appendChild(textnode);
-            document.getElementById("addmemberList").appendChild(node);
+                var node = document.createElement("A");
+                node.className = "member";
+                node.style.color = "blue";
+                node.style.textDecoration = "underline";
+                var textnode = document.createTextNode(email);
+                node.appendChild(textnode);
+                var br = document.createElement("br");
+                document.getElementById("addmemberList").appendChild(node);
+                document.getElementById("addmemberList").appendChild(br);
     
-            document.getElementById("member_email").value = "";
-            document.getElementById("emailnotregistered").style.visibility = "hidden";
-    
-        }else{
-            document.getElementById("emailnotregistered").style.visibility = "visible";
-        }
+                document.getElementById("emailnotregistered").style.visibility = "hidden";        
+            }
         })
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
-    });
+    }); 
 
-
-    if( email !== "" && memDoc === email){
-
-        emails.push(email);
-
-        var node = document.createElement("A");
-        node.className = "member";
-        node.style.color = "blue";
-        node.style.textDecoration = "underline";
-        var textnode = document.createTextNode(email + ",");
-        node.appendChild(textnode);
-        document.getElementById("addmemberList").appendChild(node);
-
-        document.getElementById("member_email").value = "";
-        document.getElementById("emailnotregistered").style.visibility = "hidden";
-
-    }else{
+    /* Error popup if email is not registered */
+    if(status == "0"){
+        document.getElementById("emailnotregistered").innerHTML = "Email is not registeresd!";
         document.getElementById("emailnotregistered").style.visibility = "visible";
     }
 
+    /* clear email textbox and set status to 0 */
     document.getElementById("member_email").value = "";
-  })
+    status = "0";
+
+
+  });
 
   
-
+/* CREATE NEW GROUP AND ADD MEMBERS */
   var create_Group = document.getElementById("create_Group");
-  var groupId;
   create_Group.addEventListener("click", function(){
 
         var grpname = document.getElementById("group_name").value;
-
+        var groupIdRef = "";
         if(grpname !== ""){
 
+                /* ADD NEW GROUP TO THE DATABASE */
                 db.collection("group").add({
                     groupname: grpname,
                     description: ""
                 })
                 .then(function(docRef) {
-                    groupId = docRef.id;
+
+                    /* FUNCTION TO ADD EACH ADDED GROUP TO USER*/
+                    function myFunctionAddMember(item) {
+
+                        var docId = "";
+                         db.collection("user").where("email", "==", item).get().then(function(querySnapshot) {
+                                     querySnapshot.forEach(function(doc) {
+
+                                         docId =  doc.id;
+                                         var mygroupsRef = db.collection("user").doc(docId).collection("groups");
+                                         mygroupsRef.add({
+                                             groupname: grpname,
+                                             groupId: docRef.id
+                             
+                                         })
+                                         .then(function(docRef) {
+                                             groupId = docRef.id;
+                                             console.log("Document written with ID: ", docRef.id);
+                                         })
+                                         .catch(function(error) {
+                                             console.error("Error adding document: ", error);
+                                         });
+                                     });
+                                 })
+                                 .catch(function(error) {
+                                     console.log("Error getting documents: ", error);
+                                 })
+     
+                     }
+                     
+                     /*FOREACH FOR EMAILS */
+                     emails.forEach(myFunctionAddMember);
                 })
                 .catch(function(error) {
                     console.error("Error adding document: ", error);
                 });
-        
-                function myFunctionAddMember(item) {
 
-                   var docId;
-                    db.collection("user").where("email", "==", item).get().then(function(querySnapshot) {
-                                querySnapshot.forEach(function(doc) {
-                                    docId = doc.id;
-                                });
-                            })
-                            .catch(function(error) {
-                                console.log("Error getting documents: ", error);
-                            });
-        
-                    var mygroupsRef = db.collection("user").doc(docId).collection("groups").doc();
-                    
-                    mygroupsRef.set({
-                        groupname: grpname,
-                        groupId: groupId
-        
-                    })
-                    .then(function(docRef) {
-                        groupId = docRef.id;
-                        console.log("Document written with ID: ", docRef.id);
-                    })
-                    .catch(function(error) {
-                        console.error("Error adding document: ", error);
-                    });
+                /* TO HIDE VALIDATION MESSAGE */
+                document.getElementById("emailnotregistered").style.visibility = "hidden";
 
-                }
-        
-                emails.forEach(myFunctionAddMember);
+                /* SUCCESS MESSAGE */
+                document.getElementById("emailnotregistered").innerHTML = "Group created successfully!";
+                document.getElementById("emailnotregistered").style.visibility = "visible";
+
+                /*EMPTY GROUP NAME TEXTBOX */
+                document.getElementById("group_name").value = "";
+
+        }else{
+            /* UNHIDE VALIDATION MESSAGE */
+            document.getElementById("emailnotregistered").innerHTML = "Group must have a name!";
+            document.getElementById("emailnotregistered").style.visibility = "visible";
         }
-      
 
   })
 

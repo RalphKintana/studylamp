@@ -54,6 +54,7 @@ body{
 }
 .addmember{
     visibility: hidden;
+    text-decoration: underline;
 }
 .member{
     font-size: 10px;
