@@ -3,6 +3,9 @@ var width = $(window).width() / 2.54;
 var height = $(window).height() / 3.4;
 $(".header_container").css({"top": height, "left": width })
 
+/* CLOUD FIRESTORE Document example in the user collection */
+var userID = "JDIyWnUQVXh6sxozNjuQ";
+
 /* STILL NOT USED */
 var userCollection = ["user","group"];       
         
@@ -28,8 +31,6 @@ var userCollection = ["user","group"];
                 console.error("Error adding document: ", error);
             });*/
 
-            /* Document example in the user collection */
-            var userID = "JDIyWnUQVXh6sxozNjuQ";
 
             db.collection("user").doc(userID).get().then(function(doc) {
                 if (doc.exists) {
@@ -107,13 +108,13 @@ var userCollection = ["user","group"];
   create_Group.addEventListener("click", function(){
 
         var grpname = document.getElementById("group_name").value;
-        var groupIdRef = "";
         if(grpname !== ""){
 
                 /* ADD NEW GROUP TO THE DATABASE */
                 db.collection("group").add({
                     groupname: grpname,
-                    description: ""
+                    description: "",
+                    admin: userID
                 })
                 .then(function(docRef) {
 
@@ -128,7 +129,8 @@ var userCollection = ["user","group"];
                                          var mygroupsRef = db.collection("user").doc(docId).collection("groups");
                                          mygroupsRef.add({
                                              groupname: grpname,
-                                             groupId: docRef.id
+                                             groupId: docRef.id,
+                                             status: "pending"
                              
                                          })
                                          .then(function(docRef) {
@@ -171,5 +173,3 @@ var userCollection = ["user","group"];
 
   })
 
-  
-         
