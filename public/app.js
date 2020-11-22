@@ -61,6 +61,10 @@ function getGroups(userid){
             var a = document.createElement("a");
             a.className = "grpname";
             a.href = "?mygroup="+ doc.data().groupId;
+            a.onclick = function (){
+                var id = doc.data().groupId;
+                displaygroupinfo(id);
+            };
             var text = document.createTextNode(doc.data().groupname);
             a.appendChild(text);
             node2.appendChild(a);
@@ -69,10 +73,9 @@ function getGroups(userid){
             cont.insertBefore(node, cont.childNodes[0]);
             console.log(doc.data());
                 
-        
+            document.getElementById("welcome_modal").style.zIndex = -5;
             document.getElementById("groups_container").style.visibility = "visible";
             document.getElementById("welcome_modal").style.visibility = "hidden";
-            document.getElementById("welcome_modal").style.zIndex = -5;
             document.getElementsByClassName("group_header")[0].style.visibility = "visible";
             document.getElementsByClassName("group_header")[1].style.visibility = "visible";
             
@@ -82,6 +85,32 @@ function getGroups(userid){
 }
 getGroups(userID);
 
+
+/* Activate selected group page*/
+function displaygroupinfo(id){
+
+    document.getElementById("group_page").style.visibility = "visible";
+
+    db.collection("group").doc(id).get().then(function(doc) {
+        if (doc.exists) {
+            document.getElementById("groupname").innerHTML = doc.data().groupname;
+            console.log(doc.data());
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+}
+
+
+/* TO keep  GROUP PAGE when reload */
+let url = window.location.href;
+if(url.includes('?')){
+    var param = new URL(url);
+    var c = param.searchParams.get("mygroup");
+    displaygroupinfo(c)
+}else{
+  console.log('No Parameters in URL');
+}
 
 
 
@@ -159,7 +188,7 @@ getGroups(userID);
                 })
                 .then(function(docRef) {
 
-                    /* FUNCTION TO ADD EACH ADDED GROUP TO USER*/
+                    /* FUNCTION TO ADD GROUP TO EACH MEMBER USER*/
                     function myFunctionAddMember(item) {
 
                         var docId = "";
@@ -171,7 +200,8 @@ getGroups(userID);
                                          mygroupsRef.add({
                                              groupname: grpname,
                                              groupId: docRef.id,
-                                             status: "pending"
+                                             status: "pending",
+                                             role: "member"
                              
                                          })
                                          .then(function(docRef) {
@@ -189,8 +219,23 @@ getGroups(userID);
      
                      }
                      
+                     
                      /*FOREACH FOR EMAILS */
                      emails.forEach(myFunctionAddMember);
+
+                    /* add admin */
+                     db.collection("user").doc(userID).collection("groups").add({
+                        groupname: grpname,
+                        groupId: docRef.id,
+                        status: "confirmed",
+                        role: "admin"
+                     }).then(function(docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                    })
+                    .catch(function(error) {
+                        console.error("Error adding document: ", error);
+                    });
+
                 })
                 .catch(function(error) {
                     console.error("Error adding document: ", error);
