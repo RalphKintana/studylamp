@@ -1,7 +1,3 @@
-/* Welome Header Center
-var width = $(window).width() / 2.54;
-var height = $(window).height() / 3.4;
-$(".header_container").css({"top": height, "left": width })*/
 
 /* CLOUD FIRESTORE Document example in the user collection */
 var userID = "JDIyWnUQVXh6sxozNjuQ";
@@ -64,7 +60,7 @@ function getGroups(userid){
             node2.className = "infopart";
             var a = document.createElement("a");
             a.className = "grpname";
-            a.href = "groups.html/"+ doc.data().groupId;
+            a.href = "?mygroup="+ doc.data().groupId;
             var text = document.createTextNode(doc.data().groupname);
             a.appendChild(text);
             node2.appendChild(a);
@@ -77,6 +73,8 @@ function getGroups(userid){
             document.getElementById("groups_container").style.visibility = "visible";
             document.getElementById("welcome_modal").style.visibility = "hidden";
             document.getElementById("welcome_modal").style.zIndex = -5;
+            document.getElementsByClassName("group_header")[0].style.visibility = "visible";
+            document.getElementsByClassName("group_header")[1].style.visibility = "visible";
             
            }
         })
@@ -215,4 +213,8 @@ getGroups(userID);
         }
 
   })
+
+
+
+  /* Add create new group ver 2 */
 

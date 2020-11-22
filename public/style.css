@@ -27,11 +27,11 @@ body{
 }
 #groups_container{
     width: 65%;
-    height: 80vh;
+    height: 20vh;
     background-color:#F5F5F5;
     margin: auto;
     padding: 10px;
-    margin-top: 4%;
+    margin-top: 3%;
     visibility: hidden;
     padding-left: 3pc;
 }
@@ -135,4 +135,15 @@ body{
 .grpname{
     color: rgb(134, 133, 134);
     font-weight: 600;
+}
+.group_page{
+
+    width: 100%;
+    height: 100vh;
+    background-color:  #F5F5F5;
+   /* position: absolute;
+    top: 0;*/
+}
+.group_header{
+    visibility: hidden;
 }
