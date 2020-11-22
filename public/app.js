@@ -1,14 +1,16 @@
-/* Welome Header Center*/
+/* Welome Header Center
 var width = $(window).width() / 2.54;
 var height = $(window).height() / 3.4;
-$(".header_container").css({"top": height, "left": width })
+$(".header_container").css({"top": height, "left": width })*/
 
 /* CLOUD FIRESTORE Document example in the user collection */
 var userID = "JDIyWnUQVXh6sxozNjuQ";
 
 /* STILL NOT USED */
-var userCollection = ["user","group"];       
-        
+var userCollection = ["user","group"];
+
+let mygroups = [];
+
     /* Cloud Firestore*/    
         firebase.initializeApp({
             apiKey: 'AIzaSyBk-TIhpYd0QJGZj_iUC9_6JVR17aH-6k0',
@@ -18,7 +20,7 @@ var userCollection = ["user","group"];
     
             var db = firebase.firestore();
             
-            /* ADD USER TO THE DATABASE 
+            /* ADD USER Doc to User collection 
             db.collection("user").add({
                 username: "NattoObasan",
                 email: "sagnoynatalie@gmail.com",
@@ -35,7 +37,7 @@ var userCollection = ["user","group"];
             db.collection("user").doc(userID).get().then(function(doc) {
                 if (doc.exists) {
                     document.getElementById("username").innerHTML = doc.data().username;
-                   // console.log("Document data:", doc.data());
+                    console.log("Document data:", doc.data());
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -43,6 +45,47 @@ var userCollection = ["user","group"];
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             });
+
+
+/* Get user Groups From Database */
+
+function getGroups(userid){
+
+    db.collection("user").doc(userID).collection("groups").where("status","==","confirmed").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           //console.log(doc.id, " => ", doc.data());
+           if(doc.exists){
+
+               
+            var node = document.createElement("div");
+            node.className = "sample";
+            var node2 = document.createElement("div");
+            node2.className = "infopart";
+            var a = document.createElement("a");
+            a.className = "grpname";
+            a.href = "groups.html/"+ doc.data().groupId;
+            var text = document.createTextNode(doc.data().groupname);
+            a.appendChild(text);
+            node2.appendChild(a);
+            node.appendChild(node2);
+            var cont =  document.getElementById("groups_container");
+            cont.insertBefore(node, cont.childNodes[0]);
+            console.log(doc.data());
+                
+        
+            document.getElementById("groups_container").style.visibility = "visible";
+            document.getElementById("welcome_modal").style.visibility = "hidden";
+            document.getElementById("welcome_modal").style.zIndex = -5;
+            
+           }
+        })
+    })
+}
+getGroups(userID);
+
+
+
 
 /* Unhide add member textbox */
  var addmember =  document.getElementById("addmember");

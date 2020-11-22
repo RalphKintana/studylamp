@@ -15,14 +15,31 @@ body{
     width: 3.5pc;
      height: 3.5pc;
 }
-.header_container{
+#welcome_modal{
     position: absolute;
-    z-index: 1;
+    visibility: visible;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    z-index: 5;
+    width: 100%;
+    top: 30%;
+}
+#groups_container{
+    width: 65%;
+    height: 80vh;
+    background-color:#F5F5F5;
+    margin: auto;
+    padding: 10px;
+    margin-top: 4%;
+    visibility: hidden;
+    padding-left: 3pc;
 }
 .welcomeHeader{
     color: #8C8C8C;
     font-size: 3.5pc;
     text-shadow: 1px 1px 1px #5e5959;
+    
 }
 .plus{
     text-align: center;
@@ -33,7 +50,6 @@ body{
 }
 .getstarted{
     color: #858585;
-    margin-left: 1pc;
     text-decoration: underline;
 }
 .getstarted:hover{
@@ -66,4 +82,57 @@ body{
     margin-left: 10px;
     color:#999999 ;
     visibility: hidden;
+}
+#navbarToggleExternalContent{
+    position: absolute;
+    z-index: 5;
+}
+.sample{
+    width: 15pc;
+    height: 9pc;
+    background-color:#17465c;
+    margin-right: 2pc;
+    margin-bottom: 2pc;
+    border-radius: 1pc;
+    box-shadow: 2px 4px 5px #dad8d8;
+}
+.sample:hover{
+    box-shadow: 0px 10px 10px #c0bfbf;
+}
+.sample2{
+    width: 15pc;
+    height: 9pc;
+    background-color:#c9c9c9;
+    margin-right: 2pc;
+    margin-bottom: 2pc;
+    border-radius: 1pc;
+    border: 2px solid #bdbcbc;
+}
+.sample2:hover{
+    background-color:#dbd9d9;
+    border: 2px solid #cfcdcd;
+}
+.infopart{
+    width: 100%;
+    height: 40%;
+    background-color: white;
+    border-bottom-left-radius: 1pc;
+    border-bottom-right-radius: 1pc;
+    margin-top: 36%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 10px 10px;
+    
+}
+.addplus{
+    margin-top: 17%;
+    text-align: center;
+    color: #8d8a8a;
+    font-weight: 900;
+    margin-bottom: 0%;  
+}
+.grpname{
+    color: rgb(134, 133, 134);
+    font-weight: 600;
 }
