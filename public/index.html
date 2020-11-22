@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+    
 </head>
 <body>
 
@@ -91,15 +93,15 @@
   <center><h5 style="margin-top: 1pc" id="groupname">GroupName</h5></center>
   <hr>
       <div class="d-flex flex-column bd-highlight mb-3 group_menu_cont">
-        <div class="p-2 bd-highlight group_menu">
+        <div class="p-2 bd-highlight group_menu" onclick="mytab(0)">
           <center><img class="menu_imgs" src="imgs/meeting.png" alt=""></center>
           <center><h6 class="list">Meetings</h6> </center>
         </div>
-        <div class="p-2 bd-highlight group_menu" >
+        <div class="p-2 bd-highlight group_menu" onclick="mytab(1)">
           <center><img class="menu_imgs" src="imgs/plan.png" alt=""></center>
           <center><h6 class="list" >Plan</h6> </center>
         </div>
-        <div class="p-2 bd-highlight group_menu">
+        <div class="p-2 bd-highlight group_menu" onclick="mytab(2)">
           <center><img class="menu_imgs" src="imgs/file.png" alt=""></center>
           <center><h6 class="list">Files</h6> </center>
         </div>
@@ -107,6 +109,28 @@
          <center><img class="menu_imgs" src="imgs/back.png" alt=""></center>
         </div>
       </div>
+      
+    
+      <div id="meeting" class="sidetab">
+        <div id="presentmeeting">
+          <h6>Present Meetings</h6>
+          <hr style="margin-top: 0;">
+          <div class="d-flex flex-column bd-highlight mb-3">
+            <div class="p-2 bd-highlight mymeetings">
+              <center><h5 class="meetingHeader">Study session</h5></center>
+              <center><p class="meetingdate">Date</p></center>
+              <a href="#" class="join">Join</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="plan" class="sidetab"> 
+        1
+      </div>
+      <div id="file" class="sidetab">
+        2
+      </div>
+
 </div>
 
 

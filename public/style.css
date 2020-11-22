@@ -175,3 +175,42 @@ body{
     text-decoration: underline;
     color: rgb(90, 89, 89);
 }
+.sidetab{
+    width: 60%;
+    height: 75%;
+    background-color: white;
+    border-radius: 1pc;
+    border: 1px solid rgb(221, 218, 218);
+    margin: auto;
+    overflow: auto;
+}
+#presentmeeting{
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    margin-top: 3%;
+}
+.mymeetings{
+  height: 5pc;
+  margin-bottom: 1pc;
+  border-radius: 5px;
+  background-image: url("imgs/pic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid rgb(221, 218, 218);
+}
+.meetingHeader{
+    margin-top: 7px;
+    color: white;
+}
+.meetingdate{
+    margin-top: -5px;
+    color: white;
+}
+.join{
+    position: relative;
+   top: -2pc;
+   margin-left: 95%;
+   font-size: 14px;
+   text-decoration: underline;
+}

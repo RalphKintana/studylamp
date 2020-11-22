@@ -60,10 +60,10 @@ function getGroups(userid){
             node2.className = "infopart";
             var a = document.createElement("a");
             a.className = "grpname";
-            a.href = "?mygroup="+ doc.data().groupId;
+            a.href = "?mygroup="+ doc.data().groupId + "&index=0";
             a.onclick = function (){
                 var id = doc.data().groupId;
-                displaygroupinfo(id);
+                displaygroupinfo(id,0);
             };
             var text = document.createTextNode(doc.data().groupname);
             a.appendChild(text);
@@ -87,10 +87,10 @@ getGroups(userID);
 
 
 /* Activate selected group page*/
-function displaygroupinfo(id){
+function displaygroupinfo(id,index){
 
     document.getElementById("group_page").style.visibility = "visible";
-
+    /* get doc in group collection */
     db.collection("group").doc(id).get().then(function(doc) {
         if (doc.exists) {
             document.getElementById("groupname").innerHTML = doc.data().groupname;
@@ -98,7 +98,24 @@ function displaygroupinfo(id){
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
-    });
+    })
+
+    mymeetings(id);
+
+    if(index != undefined){
+        mytab(index);
+    }
+}
+
+function mymeetings(id){
+
+    db.collection("group").doc(id).collection("meeting").get().then(function(doc) {
+        if (doc.exists) {
+            console.log("meeting"+ doc.data());
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    })
 }
 
 
@@ -107,7 +124,8 @@ let url = window.location.href;
 if(url.includes('?')){
     var param = new URL(url);
     var c = param.searchParams.get("mygroup");
-    displaygroupinfo(c)
+    var i = param.searchParams.get("index");
+    displaygroupinfo(c,i);
 }else{
   console.log('No Parameters in URL');
 }
@@ -260,6 +278,25 @@ if(url.includes('?')){
   })
 
 
+/* change group tab */
+function mytab(index){
+    const url = new URL(window.location);
+    if(index == 0){
+        document.getElementById("meeting").style.display = "block";
+        document.getElementById("plan").style.display = "none";
+        document.getElementById("file").style.display = "none";
+        url.searchParams.set('index', 0);
 
-  /* Add create new group ver 2 */
-
+    }else if(index == 1){
+        document.getElementById("meeting").style.display = "none";
+        document.getElementById("plan").style.display = "block";
+        document.getElementById("file").style.display = "none";
+        url.searchParams.set('index', 1);
+    }else if(index == 2){
+        document.getElementById("meeting").style.display = "none";
+        document.getElementById("plan").style.display = "none";
+        document.getElementById("file").style.display = "block";
+        url.searchParams.set('index', 2);
+    }
+    window.history.pushState({}, '', url);
+}
