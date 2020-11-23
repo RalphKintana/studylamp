@@ -91,32 +91,60 @@ function displaygroupinfo(id,index){
 
     document.getElementById("group_page").style.visibility = "visible";
     /* get doc in group collection */
-    db.collection("group").doc(id).get().then(function(doc) {
+    var groupRef = db.collection("group").doc(id);
+    
+    groupRef.get().then(function(doc) {
         if (doc.exists) {
+    
             document.getElementById("groupname").innerHTML = doc.data().groupname;
-            console.log(doc.data());
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
     })
 
-    mymeetings(id);
+    /* get all meetings in grop */
+    groupRef.collection("meeting").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+
+        var theDate = new Date(doc.data().date.seconds * 1000);
+        dateString = theDate.toGMTString();
+
+          var node = document.createElement("div");
+          node.className = "p-2 bd-highlight mymeetings";
+          var cnter = document.createElement("center");
+          var cnter2 = document.createElement("center");
+          var h5 = document.createElement("h5");
+          h5.className = "meetingHeader";
+          var text = document.createTextNode(doc.data().name);
+          var p = document.createElement("p");
+          p.className = "meetingdate";
+          var text2 = document.createTextNode(dateString);
+          var a = document.createElement("a");
+          var text3 = document.createTextNode("Join");
+          a.href = doc.id;
+          a.className = "join";
+
+          h5.appendChild(text);
+          cnter.appendChild(h5);
+          p.appendChild(text2);
+          cnter2.appendChild(p);
+          a.appendChild(text3);
+          node.appendChild(cnter);
+          node.appendChild(cnter2);
+          node.appendChild(a);
+          document.getElementById("meet_cont").appendChild(node);
+
+        });
+    });
+    
 
     if(index != undefined){
         mytab(index);
     }
 }
 
-function mymeetings(id){
-
-    db.collection("group").doc(id).collection("meeting").get().then(function(doc) {
-        if (doc.exists) {
-            console.log("meeting"+ doc.data());
-        }
-    }).catch(function(error) {
-        console.log("Error getting document:", error);
-    })
-}
 
 
 /* TO keep  GROUP PAGE when reload */
@@ -125,7 +153,9 @@ if(url.includes('?')){
     var param = new URL(url);
     var c = param.searchParams.get("mygroup");
     var i = param.searchParams.get("index");
-    displaygroupinfo(c,i);
+    if(c != undefined && i != undefined){
+        displaygroupinfo(c,i);
+    }
 }else{
   console.log('No Parameters in URL');
 }
