@@ -194,7 +194,7 @@ body{
   height: 5pc;
   margin-bottom: 1pc;
   border-radius: 5px;
-  background-image: linear-gradient(to right,rgb(36, 41, 68),rgb(50, 39, 66));
+  background-image: linear-gradient(to right,rgb(35, 39, 56),rgb(58, 51, 70));
   border: 1px solid rgb(221, 218, 218);
 }
 .meetingHeader{
@@ -213,3 +213,13 @@ body{
    font-size: 14px;
    text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
+

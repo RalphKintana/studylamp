@@ -102,14 +102,14 @@ function displaygroupinfo(id,index){
         console.log("Error getting document:", error);
     })
 
-    /* get all meetings in grop */
+    /* get all meetings in group */
     groupRef.collection("meeting").get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
 
-        var theDate = new Date(doc.data().date.seconds * 1000);
-        dateString = theDate.toGMTString();
+          var theDate = new Date(doc.data().date.seconds * 1000);
+          dateString = theDate.toGMTString();
 
           var node = document.createElement("div");
           node.className = "p-2 bd-highlight mymeetings";
@@ -135,6 +135,7 @@ function displaygroupinfo(id,index){
           node.appendChild(cnter2);
           node.appendChild(a);
           document.getElementById("meet_cont").appendChild(node);
+          document.getElementById("nomeet").style.display = "none";
 
         });
     });
@@ -330,3 +331,9 @@ function mytab(index){
     }
     window.history.pushState({}, '', url);
 }
+
+
+/* BACK to Homepage FUNCTION */
+document.getElementById("back").addEventListener('click',function(){
+    window.location.href = "index.html";
+});
