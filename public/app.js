@@ -116,10 +116,10 @@ function displaygroupinfo(id,index){
           var cnter = document.createElement("center");
           var cnter2 = document.createElement("center");
           var h5 = document.createElement("h5");
-          h5.className = "meetingHeader";
+          h5.className = "meetingHeader child";
           var text = document.createTextNode(doc.data().name);
           var p = document.createElement("p");
-          p.className = "meetingdate";
+          p.className = "meetingdate child";
           var text2 = document.createTextNode(dateString);
           var a = document.createElement("a");
           var text3 = document.createTextNode("Join");
@@ -136,6 +136,7 @@ function displaygroupinfo(id,index){
           node.appendChild(a);
           document.getElementById("meet_cont").appendChild(node);
           document.getElementById("nomeet").style.display = "none";
+          document.getElementById("emptymeet").style.display = "none";
 
         });
     });
@@ -337,3 +338,48 @@ function mytab(index){
 document.getElementById("back").addEventListener('click',function(){
     window.location.href = "index.html";
 });
+
+
+/*CHANGE CREATE GROUP MODAL TO CREATE EVENT FORM */
+document.getElementById("addevent").addEventListener('click',function(){
+    document.getElementById("exampleModalLabel").innerHTML = "Create Event";
+    document.getElementById("addmember").style.display = "none";
+    document.getElementById("member_email").style.display = "none";
+    document.getElementById("add").style.display = "none";
+    document.getElementById("eventdesc").style.display = "block";
+    document.getElementById("eventdate").style.display = "block";
+    document.getElementById("create_Event").style.display = "block";
+    document.getElementById("create_Group").style.display = "none";
+})
+
+/* CREATE NEW EVENT */
+document.getElementById("create_Event").addEventListener('click',function(){
+
+    var myname = document.getElementById("group_name").value;
+    var mydate = document.getElementById("eventdate").value;
+    var mydesc = document.getElementById("eventdesc").value;
+
+
+    if(myname != "" && mydate != ""){
+
+        var grpid = param.searchParams.get("mygroup");
+    
+        db.collection("group").doc(grpid).collection("meeting").add({
+            name: myname,
+            desc: mydesc,
+            date: firebase.firestore.Timestamp.fromDate(new Date(mydate))
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+
+            document.getElementById("emailnotregistered").innerHTML = "Event successfully added!";
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+        
+    }else{
+        document.getElementById("emailnotregistered").innerHTML = "Please fill all fields!";
+    }
+    document.getElementById("emailnotregistered").style.visibility = "visible";
+})

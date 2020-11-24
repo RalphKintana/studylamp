@@ -62,17 +62,20 @@
     </div>
     <a href="#" id="emailnotregistered">Email is not registered!</a>
     <div class="modal-body modal_body_align">
-      <h6>Name:</h6>
+      <h6 style="margin-top: -1pc;">Name:</h6>
       <input type="text" name="group_name" id="group_name"> <br>
       <a href="#" class="menu_list" style="font-size: 12px;" id="addmember">+ Add Members</a>
       <input type="email" name="member_email" id="member_email" class="addmember" >
       <a href="#" style="font-size: 12px;" class="addmember" id="add">Add</a>
       <div id="addmemberList">
       </div>
+      <textarea name="" id="eventdesc" cols="25" rows="5" placeholder="Description..."></textarea>
+      <input type="date" name="" id="eventdate">
       <br>
     </div>
     <div class="text-center">
       <button type="button" class="btn btn-primary createbtn"  id="create_Group">Create</button>
+      <button type="button" class="btn btn-primary createbtn"  id="create_Event">Create</button>
     </div>
   </div>
 </div>
@@ -116,15 +119,35 @@
           <h6>Present Meetings</h6>
           <hr style="margin-top: 0;">
           <div class="d-flex flex-column bd-highlight mb-3" id="meet_cont">
-            <center id="nomeet" style="font-weight:600; color: rgba(156, 154, 154, 0.856); margin-top: 20%;">You have no meetings today.</center>
+            <div id="emptymeet">
+            <center id="nomeet" style="font-weight:600; color: rgba(156, 154, 154, 0.856); margin-top: 15%;">You have no meetings today.</center>
+            </div>
           </div>
         </div>
       </div>
       <div id="plan" class="sidetab"> 
-        1
+        <a  href="http://" data-toggle="modal" data-target="#exampleModal"><button id="addevent" class="eventBtn">+Event</button></a>
+        <div id="mycalendar">
+
+        </div>
+        <div id="event_desc_cont">
+
+        </div>
+        <div>
+
+        </div>
+        
       </div>
       <div id="file" class="sidetab">
-        2
+        <div id="presentmeeting">
+          <h6>Files</h6>
+          <button id="upload" class="btn btn-secondary">+ Upload</button>
+          <hr style="margin-top: 0;">
+          <div class="d-flex flex-column bd-highlight mb-3" id="meet_cont">
+          </div>
+          <div id="upload_cont"><button type="submit" style="margin-right: 2px;">Submit</button><input type="file" name="" id=""></div>
+
+        </div>
       </div>
 
 </div>
