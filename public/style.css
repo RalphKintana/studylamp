@@ -232,13 +232,6 @@ body{
    font-size: 14px;
    text-decoration: underline;
 }
-#upload{
-    float:right;
-}
-#upload_cont{
-    position: abso;
-    background-color: yellow;
-}
 #mycalendar{
     width: 50%;
     height: 60vh;
