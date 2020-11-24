@@ -202,17 +202,17 @@ body{
 .mymeetings{
   width: 97%;
   height: 7pc;
-  margin-bottom: 1pc;
   border-radius: 5px;
+  margin-bottom:15px ;
+  margin-left: 10px;
   background-image: linear-gradient(to right,rgb(35, 39, 56),rgb(58, 51, 70));
-  margin: auto;
 }
 .mymeetings:hover .meetingHeader{
     margin-top: 16px;
 }
 .mymeetings:hover{
     box-shadow: 2px 5px 3px rgba(129, 128, 128, 0.411);
-    width: 99%;
+    width: 98%;
     height: 7.3pc;
 
 }
@@ -285,6 +285,14 @@ body{
     display: none;
     margin: auto;
     margin-bottom: 2pc;
+}
+#meet_cont{
+    background-color:white;
+    margin-top: -1pc;
+    padding-top: 1pc;
+    height:65vh;
+    border-radius: 5px;
+    overflow:auto;
 }
 
 
