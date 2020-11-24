@@ -52,8 +52,7 @@ function getGroups(userid){
             // doc.data() is never undefined for query doc snapshots
            //console.log(doc.id, " => ", doc.data());
            if(doc.exists){
-
-               
+ 
             var node = document.createElement("div");
             node.className = "sample";
             var node2 = document.createElement("div");

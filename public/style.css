@@ -131,12 +131,20 @@ body{
     padding: 10px 10px;
     
 }
-.addplus{
-    margin-top: 17%;
+.card-decor{
     text-align: center;
     color: #8d8a8a;
-    font-weight: 900;
-    margin-bottom: 0%;  
+}
+.card-group{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    width: 280px; 
+    height: 160px;
+    cursor: pointer;
+}
+.card-group:focus{
+    outline: none;
 }
 .grpname{
     color: rgb(134, 133, 134);
