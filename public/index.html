@@ -24,25 +24,26 @@
 
     <div class="pos-f-t">
       <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-text">
+          <h6 style="color: white;letter-spacing: 3px;">STUDYLAMP</h6>
+        </span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <span class="navbar-text">
-          <h6 style="color: white;letter-spacing: 3px;">Study Lamp</h6>
-        </span>
+        
       </nav>
     </div>
-    <div class="collapse burger_menu" id="navbarToggleExternalContent">
-      <div class="bg-white p-4" style="height: 24pc; text-align: center;">
-        <br><img src="imgs/profile.png" class="profile_image"> <br>
-        <a class="menu_list" href="http://" id="username"></a><br>
-        <hr>
-        <a class="menu_list" href="http://">Group Requests</a><br>
-        <a class="menu_list" href="http://">Setting</a><br><br>
-        <br><br><br><a class="menu_list" href="http://" >Log out</a>
-
+      <div class="collapse burger_menu" id="navbarToggleExternalContent">
+        <div class="bg-white p-4" style="height: 24pc; text-align: center;">
+          <br><img src="imgs/profile.png" class="profile_image"> <br>
+          <a class="menu_list" href="http://" id="username"></a><br>
+          <hr>
+          <a class="menu_list" href="http://">Group Requests</a><br>
+          <a class="menu_list" href="http://">Setting</a><br><br>
+          <br><br><br><a class="menu_list" href="http://" >Log out</a>
+        </div>
       </div>
-    </div>
+
     <div class="header_container" id="welcome_modal">
       <h1 class="welcomeHeader">Welcome!</h1>
        <h1 class="plus">+</h1>
@@ -82,11 +83,21 @@
 </div>
 <center><h5  class="group_header" style="margin-top: 1pc">GROUPS</h5></center>
 <hr class="group_header" >
-<div id="groups_container"  class="d-flex align-content-start flex-wrap">
+
+<!-- Previous Add Group -->
+<!-- <div id="groups_container"  class="d-flex align-content-start flex-wrap">
   <div class="sample2" data-toggle="modal" data-target="#exampleModal">
     <h1 class="addplus">+</h1>
   </div>
-</div>
+</div> -->
+
+<!-- Add Group -->
+<button onclick="createGroup()" class="card" style="outline: none;">
+  <div class="card-body">
+    <h1 class="card-title addplus">+</h1>
+  </div>    
+</button>
+
 
 
 
@@ -151,12 +162,13 @@
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
- 
- <!-- Sweet Alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- Sweet Alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Custom JS -->
 <script src="./app.js"></script>
 <script src="./alert.js"></script>
+
 </body>
 </html>

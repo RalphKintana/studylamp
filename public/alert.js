@@ -1,7 +1,11 @@
-function success() {
-  swal({
-      title: "Good job!",
-      text: "You clicked the button!",
-      icon: "success",
-    });
+function createGroup(){
+  Swal.fire({
+    title: 'Create Group',
+    text: 'Group Name:',
+    icon: 'info',
+    input: "text",
+    confirmButtonText: 'Create'
+  }).then((result) => {
+      Swal.fire('Successfully Created')
+  })
 }
