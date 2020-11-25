@@ -51,33 +51,54 @@ function getGroups(userid){
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
            //console.log(doc.id, " => ", doc.data());
+           
            if(doc.exists){
- 
-            var node = document.createElement("div");
-            node.className = "sample";
-            var node2 = document.createElement("div");
-            node2.className = "infopart";
-            var a = document.createElement("a");
-            a.className = "grpname";
-            a.href = "?mygroup="+ doc.data().groupId + "&index=0";
-            a.onclick = function (){
-                var id = doc.data().groupId;
-                displaygroupinfo(id,0);
-            };
-            var text = document.createTextNode(doc.data().groupname);
-            a.appendChild(text);
-            node2.appendChild(a);
-            node.appendChild(node2);
-            var cont =  document.getElementById("groups_container");
-            cont.insertBefore(node, cont.childNodes[0]);
-            console.log(doc.data());
-                
-            document.getElementById("welcome_modal").style.zIndex = -5;
-            document.getElementById("groups_container").style.visibility = "visible";
-            document.getElementById("welcome_modal").style.visibility = "hidden";
-            document.getElementsByClassName("group_header")[0].style.visibility = "visible";
-            document.getElementsByClassName("group_header")[1].style.visibility = "visible";
-            
+
+                /* Old Prep Node */
+                var node = document.createElement("div");
+                node.className = "sample";
+                var node2 = document.createElement("div");
+                node2.className = "infopart";
+                var a = document.createElement("a");
+                a.className = "grpname";
+                a.href = "?mygroup="+ doc.data().groupId + "&index=0";
+                a.onclick = function (){
+                    var id = doc.data().groupId;
+                    displaygroupinfo(id,0);
+                };
+
+                /* Prep Node */
+                // var node = document.createElement("div");
+                // node.innerHTML = "<button onclick='createGroup' class='card card-group'>Test</button>";
+                // console.log(node);
+
+                // var node2 = document.createElement("div");
+                // node2.className = "infopart";
+                // var a = document.createElement("a");
+                // a.className = "grpname";
+                // a.href = "?mygroup="+ doc.data().groupId + "&index=0";
+                // a.onclick = function (){
+                //     var id = doc.data().groupId;
+                //     displaygroupinfo(id,0);
+                // };
+
+                /* Append Node */
+                var text = document.createTextNode(doc.data().groupname);
+                a.appendChild(text);
+                node2.appendChild(a);
+                node.appendChild(node2);
+                var cont =  document.getElementById("groups_container");
+                cont.insertBefore(node, cont.childNodes[0]);
+
+                /* Verify whether Successful or Not - Not visible to the client */
+                console.log(doc.data());
+                    
+                /* Hide Modal */
+                document.getElementById("welcome_modal").style.zIndex = -5;
+                document.getElementById("groups_container").style.visibility = "visible";
+                document.getElementById("welcome_modal").style.visibility = "hidden";
+                document.getElementsByClassName("group_header")[0].style.visibility = "visible";
+                document.getElementsByClassName("group_header")[1].style.visibility = "visible";
            }
         })
     })
